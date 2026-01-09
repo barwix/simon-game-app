@@ -29,9 +29,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/supertest": "^6.0.3",
+    "@vitejs/plugin-react": "^5.1.2",
     "@vitest/coverage-v8": "^4.0.16",
     "@vitest/ui": "^4.0.16",
+    "jsdom": "^27.4.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "supertest": "^7.2.2",
     "tsx": "^4.20.3",
     "vitest": "^4.0.16"
