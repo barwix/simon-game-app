@@ -86,16 +86,8 @@ authRouter.post('/join-game', (req: Request, res: Response) => {
     // Validate input
     const { displayName, avatarId, gameCode: rawGameCode } = validateJoinGame(req.body);
     
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'authController.ts:85',message:'Join request received',data:{rawGameCode,displayName},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,C'})}).catch(()=>{});
-    // #endregion
-    
     // Normalize game code (remove dashes, uppercase)
     const gameCode = normalizeGameCode(rawGameCode);
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'authController.ts:89',message:'After normalization',data:{rawGameCode,normalizedCode:gameCode},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,C'})}).catch(()=>{});
-    // #endregion
     
     // Join room
     const room = gameService.joinRoom(gameCode, { displayName, avatarId });

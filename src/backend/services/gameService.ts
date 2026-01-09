@@ -55,10 +55,6 @@ export class GameService {
 
     this.rooms.set(gameCode, room);
     
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'gameService.ts:56',message:'Room created',data:{gameCode,playerCount:room.players.length,totalRooms:this.rooms.size},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E'})}).catch(()=>{});
-    // #endregion
-    
     return room;
   }
 
@@ -66,14 +62,7 @@ export class GameService {
    * Get a room by game code
    */
   getRoom(gameCode: string): GameRoom | null {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'gameService.ts:64',message:'getRoom called',data:{gameCode,allRoomCodes:Array.from(this.rooms.keys()),roomCount:this.rooms.size},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D,E'})}).catch(()=>{});
-    // #endregion
-    const result = this.rooms.get(gameCode) ?? null;
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'gameService.ts:68',message:'getRoom result',data:{gameCode,found:!!result},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D,E'})}).catch(()=>{});
-    // #endregion
-    return result;
+    return this.rooms.get(gameCode) ?? null;
   }
 
   /**
@@ -120,15 +109,9 @@ export class GameService {
    * Add a player to a room
    */
   joinRoom(gameCode: string, playerInfo: PlayerInfo): GameRoom {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'gameService.ts:111',message:'joinRoom called',data:{gameCode,playerInfo,existingRooms:Array.from(this.rooms.keys())},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D,E'})}).catch(()=>{});
-    // #endregion
     const room = this.rooms.get(gameCode);
     
     if (!room) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'gameService.ts:118',message:'Room not found - about to throw',data:{gameCode,allRooms:Array.from(this.rooms.keys()),roomCount:this.rooms.size},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D,E'})}).catch(()=>{});
-      // #endregion
       throw new Error('Room not found');
     }
     

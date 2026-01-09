@@ -52,21 +52,11 @@ export function EntryPage() {
     setError('');
     setLoading(false);
 
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EntryPage.tsx:53',message:'Frontend join attempt',data:{gameCode,displayName,gameCodeLength:gameCode.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,C'})}).catch(()=>{});
-    // #endregion
-
     try {
       const response = await joinGame(displayName, avatarId, gameCode);
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EntryPage.tsx:59',message:'Join success',data:{playerId:response.playerId},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
-      // #endregion
       setSession(response.session);
       navigate('/waiting');
     } catch (err) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/6d47cce6-6893-4957-9a42-dd26b75e147c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EntryPage.tsx:66',message:'Join error',data:{error:err instanceof Error ? err.message : String(err),gameCode},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B,C,D,E'})}).catch(()=>{});
-      // #endregion
       setError(err instanceof Error ? err.message : 'Failed to join game');
     } finally {
       setLoading(false);
