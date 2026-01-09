@@ -2,7 +2,7 @@
   "name": "simon-game-app",
   "version": "1.0.0",
   "description": "Multiplayer Simon Says game with real-time WebSocket communication",
-  "main": "dist/backend/index.js",
+  "main": "dist/backend/server.js",
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
@@ -13,7 +13,8 @@
     "build:backend": "tsc -p tsconfig.backend.json",
     "dev": "tsc --watch",
     "dev:backend": "tsx watch src/backend/server.ts",
-    "start": "node dist/backend/index.js",
+    "start": "node dist/backend/server.js",
+    "start:prod": "NODE_ENV=production node dist/backend/server.js",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "typecheck": "tsc --noEmit"
