@@ -58,6 +58,10 @@ This will install everything and start the app. You should see:
    🌐 HTTP:      http://localhost:3000
 ```
 
+> ✅ **The terminal will keep running** - this is normal! Leave it open and continue to the next step.
+>
+> To stop the servers later, press `Ctrl + C` in the terminal.
+
 ### Open in Browser
 
 Go to: **http://localhost:5173**
