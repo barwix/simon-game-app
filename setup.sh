@@ -55,13 +55,13 @@ echo ""
 # Clean and install dependencies
 echo "📦 Installing backend dependencies..."
 rm -rf node_modules/.cache 2>/dev/null || true
-npm install --silent
+npm install 
 
 echo ""
 echo "📦 Installing frontend dependencies..."
 cd frontend
 rm -rf node_modules/.cache 2>/dev/null || true
-npm install --silent
+npm install 
 cd ..
 
 echo ""
